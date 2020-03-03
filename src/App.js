@@ -11,7 +11,7 @@ function App() {
     fetch('http://localhost:3000/pokemons')
     .then(resp => resp.json())
     .then(data => setAllPokemon(data))
-
+    
     fetch('http://localhost:3000/pokedexes')
     .then(resp => resp.json())
     .then(data => setAllEntries(data))
@@ -54,7 +54,10 @@ function App() {
         </p>
       </Jumbotron>
 
-      <PokemonCards allPokemon={allPokemon} allEntries={allEntries} />
+      {allPokemon.map(pokemon => {
+        return <PokemonCards pokemon={pokemon} />
+      })}
+
     </div>
   )
 }
