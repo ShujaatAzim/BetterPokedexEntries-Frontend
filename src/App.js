@@ -41,7 +41,7 @@ function App() {
       </Navbar>
 
       <Jumbotron>
-        <h1>Hello, World!</h1>
+        <h1>Welcome to Better Pokedex Entries!</h1>
         <p>
           We know the Pokedex in the games can be a little... lackluster. Practice making some!
         </p>
