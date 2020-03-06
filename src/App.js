@@ -1,50 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import PokemonCards from './Components/PokemonCards'
+import React from 'react'
 import { Button, Jumbotron, Navbar, Nav, NavDropdown, Form, FormControl } from 'react-bootstrap'
 
 const App = () => {
-
-  const [allPokemon, setAllPokemon] = useState([])
-  const [randoms, setRandoms] = useState([])
-
-  useEffect(() => {
-    const randomSix = () => {
-      let i = 6
-      let randomInts = []
-      while (i > 0) {
-        let num = getRandomInt()
-        if (randomInts.includes(num)) {
-          num = getRandomInt()
-        } else {
-          randomInts.push(num)
-          i--
-        }
-      }
-      // let finalSix = randomInts.map(num => allPokemon.filter(pokemon => pokemon.id === num))
-      // setDisplayed(finalSix)
-      // console.log(displayed)
-    }
-
-    const filtration = () => {
-      let finalSix = []
-      for (let i = 0; i > randoms.length; i++) {
-        let found = allPokemon.find(pokemon => pokemon.id === randoms[i])
-        finalSix.push(found)
-      }
-      console.log(finalSix)
-    }
-    
-    fetch('http://localhost:3000/pokemons')
-    .then(resp => resp.json())
-    .then(data => setAllPokemon(data))
-    .then(() => randomSix())
-    .then(() => filtration())
-  }, [])
-
-  const getRandomInt = () => {
-    return Math.floor(Math.random() * Math.floor(6) + 1)
-  }
-  
 
   return (
     <div>
@@ -73,15 +30,8 @@ const App = () => {
         <p>We know the Pokedex in the games can be a little... lackluster. Practice making some!</p>
         <hr className="my-2" />
         <p>Start by choosing a pokemon!</p>
-        <p><Button color="primary">Pokemon</Button></p>
+        <p><Button color="primary">Pokemon List</Button></p>
       </Jumbotron>
-
-
-
-      {allPokemon.map(pokemon => {
-        return <PokemonCards key={pokemon.id} pokemon={pokemon} />
-      })}
-
     </div>
   )
 }
