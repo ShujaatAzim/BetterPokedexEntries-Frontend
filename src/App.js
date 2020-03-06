@@ -1,5 +1,6 @@
 import React from 'react'
-import { Button, Jumbotron, Navbar, Nav, NavDropdown, Form, FormControl } from 'react-bootstrap'
+import { Button, Jumbotron, Navbar, Nav, Form, FormControl } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 const App = () => {
 
@@ -13,10 +14,6 @@ const App = () => {
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/pokemon">All Pokemon</Nav.Link>
             <Nav.Link href="">Random</Nav.Link>
-            <NavDropdown title="Placeholder" id="basic-nav-dropdown">
-              <NavDropdown.Item href="">Kanto # 001-151</NavDropdown.Item>
-              <NavDropdown.Item href="">Johto # 152-251</NavDropdown.Item>
-            </NavDropdown>
           </Nav>
           <Form inline>
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
@@ -30,7 +27,7 @@ const App = () => {
         <p>We know the Pokedex in the games can be a little... lackluster. Practice making some!</p>
         <hr className="my-2" />
         <p>Start by choosing a pokemon!</p>
-        <p><Button color="primary">Pokemon List</Button></p>
+        <p><Link to="/pokemon"><Button color="primary">Pokemon List</Button></Link></p>
       </Jumbotron>
     </div>
   )

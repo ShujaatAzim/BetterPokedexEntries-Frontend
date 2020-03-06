@@ -18,9 +18,10 @@ const PokemonCards = props => {
           <Card.Title>{pokemon.name}</Card.Title>
           <hr />
           <Card.Text>
-            <Button variant="outline-primary"><Link to={{pathname: `/pokemon/${name}`, state: pokemon}} style={{ marginRight: "0.5rem" }}>More Info</Link></Button>
+          <Link to={{pathname: `/pokemon/${name}`, state: pokemon}}><Button variant="outline-primary" style={{ marginRight: "0.5rem" }}>
+            More Info</Button></Link>
             <Button onClick={() => setComplete(!complete)} variant={complete ? "success" : "outline-secondary"} style={{ marginLeft: "0.5rem" }}>
-              { complete? "Complete!" : "Mark Complete" }</Button>
+              { complete? "Complete!" : "Complete?" }</Button>
           </Card.Text>
         </Card.Body>
       </Card>
