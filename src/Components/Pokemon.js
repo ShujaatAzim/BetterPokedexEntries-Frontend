@@ -5,25 +5,22 @@ import { Button, Navbar, Nav, NavDropdown, Form, FormControl } from 'react-boots
 const Pokemon = () => {
 
   const [allPokemon, setAllPokemon] = useState([])
-  const [randomPokemon, setRandomPokemon] = useState(null)
+  const [randomPokemon, setRandomPokemon] = useState({name: ""})
 
   useEffect(() => {
     let randomNum = Math.floor(Math.random() * 12)
     fetch('http://localhost:3000/pokemons')
     .then(resp => resp.json())
-    .then(data => {setAllPokemon(data);console.log(data[randomNum])})
+    .then(data => {setAllPokemon(data);setRandomPokemon(data[randomNum])})
   }, [])
 
   const getRandomPoke = () => {
-    let pokes = [...allPokemon]
-    let num = Math.floor(Math.random() * allPokemon.length)
-    let rando = pokes.filter(pokemon => pokemon.id === num)
-    setRandomPokemon(rando[0])
-    // window.location = '/pokemon/randomPokemon.name.toLowerCase()'
+    let randomID = Math.floor(Math.random() * allPokemon.length) + 1
+    fetch(`http://localhost:3000/pokemons/${randomID}`)
+    .then(resp => resp.json())
+    .then(data => setRandomPokemon(data))
+    .then(console.log(randomPokemon))
   }
-
-// this is for generating random pokes:
-// href={randomPokemon !== null ? `/pokemon/${randomPokemon.name.toLowerCase()}` : ""}
 
   return (
     <div>

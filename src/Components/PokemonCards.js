@@ -6,7 +6,6 @@ const PokemonCards = props => {
 
   const { pokemon } = props
   const name = props.pokemon.name.toLowerCase()
-
   const [complete, setComplete] = useState(false)
   
   return (
