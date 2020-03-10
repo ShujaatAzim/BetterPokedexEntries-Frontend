@@ -8,26 +8,28 @@ const App = () => {
   const [randomPokes, setRandomPokes] = useState([])
 
   useEffect(() => {
+    
     let randomIDs = []
+    let newPokes = []
     while (randomIDs.length < 6) {
-      let num = Array.from({length: 6}, () => Math.floor(Math.random() * 12) + 1);
-      if (randomIDs.indexOf(num) === -1) {
+      let num = Math.floor(Math.random() * 12) + 1
+      if (!randomIDs.includes(num)) {
         randomIDs.push(num)
       }
     }
-
-    let newPokes = []
-    randomIDs.map(num => 
-       fetch(`http://localhost:3000/pokemons/${num}`)
+    
+    randomIDs.forEach(num => {
+      fetch(`http://localhost:3000/pokemons/${num}`)
       .then(resp => resp.json())
       .then(data => newPokes.push(data))
-    )
-    setRandomPokes(newPokes)
+      .then(() => setRandomPokes([...newPokes]))
+    })
+
   }, [])
 
   return (
     <div>
-      <div>
+      
         <Navbar bg="light" expand="lg">
           <Navbar.Brand href="/">Better Pokedex</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -43,9 +45,8 @@ const App = () => {
             </Form>
           </Navbar.Collapse>
         </Navbar>
-      </div>
 
-      <div>
+      
         <Jumbotron>
           <h1>Welcome to Better Pokedex Entries!</h1>
           <p>We know the Pokedex in the games can be a little... lackluster. Practice making some!</p>
@@ -53,14 +54,9 @@ const App = () => {
           <p>Start by choosing a pokemon!</p>
           <p><Link to="/pokemon"><Button color="primary">Pokemon List</Button></Link></p>
         </Jumbotron>
-      </div>
 
-      <div>
-        {randomPokes.map(pokemon => {
-          return <PokemonCards key={pokemon.id} pokemon={pokemon} />
-        })}
-      </div>
-
+      {randomPokes.map(pokemon => <PokemonCards key={pokemon.id} pokemon={pokemon} />)}
+      
     </div>
   )
 }

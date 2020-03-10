@@ -35,6 +35,8 @@ const PokemonProfile = props => {
         <h3>{pokemon.species} Pokemon</h3>
         <br />
         <h5>{pokemon.pokedex}</h5>
+        <br />
+        <Button>Edit</Button> 
       </div>
     </div>
   )
