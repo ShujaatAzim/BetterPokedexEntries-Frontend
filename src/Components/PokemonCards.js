@@ -6,7 +6,7 @@ const PokemonCards = props => {
 
   const { pokemon } = props
   const name = props.pokemon.name.toLowerCase()
-  const [complete, setComplete] = useState(false)
+  const [complete, setComplete] = useState(props.pokemon.complete)
   
   return (
       <Card style={{ width: '18rem', height: "100%", display: 'inline-block', margin: "1rem" }}>

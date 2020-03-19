@@ -4,6 +4,7 @@ import { Button, Navbar, Nav, NavDropdown, Form, FormControl } from 'react-boots
 const PokemonProfile = props => {
 
   const [pokemon] = useState(props.location.state)
+  const [complete, setComplete] = useState(props.location.state.complete)
 
   return (
     <div>
@@ -36,7 +37,9 @@ const PokemonProfile = props => {
         <br />
         <h5>{pokemon.pokedex}</h5>
         <br />
-        <Button>Edit</Button> 
+        <Button style={{ margin: "1rem" }}>Edit</Button>
+        <Button onClick={() => setComplete(!complete)} variant={complete ? "success" : "outline-secondary"} style={{ marginLeft: "0.5rem" }}>
+              { complete? "Complete!" : "Complete?" }</Button>
       </div>
     </div>
   )
